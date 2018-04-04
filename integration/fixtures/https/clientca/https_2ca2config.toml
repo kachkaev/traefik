@@ -1,18 +1,18 @@
 logLevel = "DEBUG"
 
-defaultEntryPoints = ["https"]
+defaultEntrypoints = ["https"]
 
-[entryPoints]
-  [entryPoints.https]
+[entrypoints]
+  [entrypoints.https]
   address = ":4443"
-    [entryPoints.https.tls]
-      [entryPoints.https.tls.ClientCA]
+    [entrypoints.https.tls]
+      [entrypoints.https.tls.ClientCA]
       files = ["fixtures/https/clientca/ca1.crt", "fixtures/https/clientca/ca2.crt"]
       optional = false
-      [[entryPoints.https.tls.certificates]]
+      [[entrypoints.https.tls.certificates]]
       certFile = "fixtures/https/snitest.com.cert"
       keyFile = "fixtures/https/snitest.com.key"
-      [[entryPoints.https.tls.certificates]]
+      [[entrypoints.https.tls.certificates]]
       certFile = "fixtures/https/snitest.org.cert"
       keyFile = "fixtures/https/snitest.org.key"
 

@@ -9,12 +9,12 @@ Træfik can be configured:
 ```toml
 # Enable rest backend.
 [rest]
-  # Name of the related entry point
+  # Name of the related entrypoint
   #
   # Optional
   # Default: "traefik"
   #
-  entryPoint = "traefik"
+  entrypoint = "traefik"
 ```
 
 ## API

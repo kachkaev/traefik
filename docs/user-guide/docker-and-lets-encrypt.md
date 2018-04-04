@@ -80,16 +80,16 @@ Let's take a look at a simple `traefik.toml` configuration as well before we'll 
 debug = false
 
 logLevel = "ERROR"
-defaultEntryPoints = ["https","http"]
+defaultEntrypoints = ["https","http"]
 
-[entryPoints]
-  [entryPoints.http]
+[entrypoints]
+  [entrypoints.http]
   address = ":80"
-    [entryPoints.http.redirect]
-    entryPoint = "https"
-  [entryPoints.https]
+    [entrypoints.http.redirect]
+    entrypoint = "https"
+  [entrypoints.https]
   address = ":443"
-  [entryPoints.https.tls]
+  [entrypoints.https.tls]
 
 [retry]
 
@@ -97,22 +97,22 @@ defaultEntryPoints = ["https","http"]
 endpoint = "unix:///var/run/docker.sock"
 domain = "my-awesome-app.org"
 watch = true
-exposedbydefault = false
+exposedByDefault = false
 
 [acme]
 email = "your-email-here@my-awesome-app.org"
 storage = "acme.json"
-entryPoint = "https"
+entrypoint = "https"
 OnHostRule = true
 [acme.httpChallenge]
-entryPoint = "http"
+entrypoint = "http"
 ```
 
 This is the minimum configuration required to do the following:
 
 - Log `ERROR`-level messages (or more severe) to the console, but silence `DEBUG`-level messages
 - Check for new versions of Træfik periodically
-- Create two entry points, namely an `HTTP` endpoint on port `80`, and an `HTTPS` endpoint on port `443` where all incoming traffic on port `80` will immediately get redirected to `HTTPS`.
+- Create two entrypoints, namely an `HTTP` endpoint on port `80`, and an `HTTPS` endpoint on port `443` where all incoming traffic on port `80` will immediately get redirected to `HTTPS`.
 - Enable the Docker configuration backend and listen for container events on the Docker unix socket we've mounted earlier. However, **new containers will not be exposed by Træfik by default, we'll get into this in a bit!**
 - Enable automatic request and configuration of SSL certificates using Let's Encrypt.
     These certificates will be stored in the `acme.json` file, which you can back-up yourself and store off-premises.
@@ -250,7 +250,7 @@ Træfik will create a frontend to listen to incoming HTTP requests which contain
 - Always specify the correct port where the container expects HTTP traffic using `traefik.port` label.  
     If a container exposes multiple ports, Træfik may forward traffic to the wrong port.
     Even if a container only exposes one port, you should always write configuration defensively and explicitly.
-- Should you choose to enable the `exposedbydefault` flag in the `traefik.toml` configuration, be aware that all containers that are placed in the same network as Træfik will automatically be reachable from the outside world, for everyone and everyone to see.
+- Should you choose to enable the `exposedByDefault` flag in the `traefik.toml` configuration, be aware that all containers that are placed in the same network as Træfik will automatically be reachable from the outside world, for everyone and everyone to see.
     Usually, this is a bad idea.
 - With the `traefik.frontend.auth.basic` label, it's possible for Træfik to provide a HTTP basic-auth challenge for the endpoints you provide the label for.
 - Træfik has built-in support to automatically export [Prometheus](https://prometheus.io) metrics

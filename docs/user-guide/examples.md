@@ -5,28 +5,28 @@ You will find here some configuration examples of Træfik.
 ## HTTP only
 
 ```toml
-defaultEntryPoints = ["http"]
+defaultEntrypoints = ["http"]
 
-[entryPoints]
-  [entryPoints.http]
+[entrypoints]
+  [entrypoints.http]
   address = ":80"
 ```
 
 ## HTTP + HTTPS (with SNI)
 
 ```toml
-defaultEntryPoints = ["http", "https"]
+defaultEntrypoints = ["http", "https"]
 
-[entryPoints]
-  [entryPoints.http]
+[entrypoints]
+  [entrypoints.http]
   address = ":80"
-  [entryPoints.https]
+  [entrypoints.https]
   address = ":443"
-    [entryPoints.https.tls]
-      [[entryPoints.https.tls.certificates]]
+    [entrypoints.https.tls]
+      [[entrypoints.https.tls.certificates]]
       certFile = "integration/fixtures/https/snitest.com.cert"
       keyFile = "integration/fixtures/https/snitest.com.key"
-      [[entryPoints.https.tls.certificates]]
+      [[entrypoints.https.tls.certificates]]
       certFile = "integration/fixtures/https/snitest.org.cert"
       keyFile = "integration/fixtures/https/snitest.org.key"
 ```
@@ -35,17 +35,17 @@ Note that we can either give path to certificate file or directly the file conte
 ## HTTP redirect on HTTPS
 
 ```toml
-defaultEntryPoints = ["http", "https"]
+defaultEntrypoints = ["http", "https"]
 
-[entryPoints]
-  [entryPoints.http]
+[entrypoints]
+  [entrypoints.http]
   address = ":80"
-    [entryPoints.http.redirect]
-    entryPoint = "https"
-  [entryPoints.https]
+    [entrypoints.http.redirect]
+    entrypoint = "https"
+  [entrypoints.https]
   address = ":443"
-    [entryPoints.https.tls]
-      [[entryPoints.https.tls.certificates]]
+    [entrypoints.https.tls]
+      [[entrypoints.https.tls.certificates]]
       certFile = "examples/traefik.crt"
       keyFile = "examples/traefik.key"
 ```
@@ -58,20 +58,20 @@ defaultEntryPoints = ["http", "https"]
 ### Basic example with HTTP challenge
 
 ```toml
-[entryPoints]
-  [entryPoints.http]
+[entrypoints]
+  [entrypoints.http]
   address = ":80"
-  [entryPoints.https]
+  [entrypoints.https]
   address = ":443"
-    [entryPoints.https.tls]
+    [entrypoints.https.tls]
 
 [acme]
 email = "test@traefik.io"
 storage = "acme.json"
 caServer = "http://172.18.0.1:4000/directory"
-entryPoint = "https"
+entrypoint = "https"
   [acme.httpChallenge]
-  entryPoint = "http"
+  entrypoint = "http"
 
 [[acme.domains]]
   main = "local1.com"
@@ -92,21 +92,21 @@ Træfik generates these certificates when it starts and it needs to be restart i
 ### OnHostRule option (with HTTP challenge)
 
 ```toml
-[entryPoints]
-  [entryPoints.http]
+[entrypoints]
+  [entrypoints.http]
   address = ":80"
-  [entryPoints.https]
+  [entrypoints.https]
   address = ":443"
-    [entryPoints.https.tls]
+    [entrypoints.https.tls]
 
 [acme]
 email = "test@traefik.io"
 storage = "acme.json"
 onHostRule = true
 caServer = "http://172.18.0.1:4000/directory"
-entryPoint = "https"
+entrypoint = "https"
   [acme.httpChallenge]
-  entryPoint = "http"
+  entrypoint = "http"
 
 [[acme.domains]]
   main = "local1.com"
@@ -124,26 +124,26 @@ This configuration allows generating Let's Encrypt certificates (thanks to `HTTP
 
 Træfik generates these certificates when it starts.
 
-If a backend is added with a `onHost` rule, Træfik will automatically generate the Let's Encrypt certificate for the new domain (for frontends wired on the `acme.entryPoint`).
+If a backend is added with a `onHost` rule, Træfik will automatically generate the Let's Encrypt certificate for the new domain (for frontends wired on the `acme.entrypoint`).
 
 ### OnDemand option (with HTTP challenge)
 
 ```toml
-[entryPoints]
-  [entryPoints.http]
+[entrypoints]
+  [entrypoints.http]
   address = ":80"
-  [entryPoints.https]
+  [entrypoints.https]
   address = ":443"
-    [entryPoints.https.tls]
+    [entrypoints.https.tls]
 
 [acme]
 email = "test@traefik.io"
 storage = "acme.json"
 onDemand = true
 caServer = "http://172.18.0.1:4000/directory"
-entryPoint = "https"
+entrypoint = "https"
   [acme.httpChallenge]
-  entryPoint = "http"
+  entrypoint = "http"
 ```
 
 This configuration allows generating a Let's Encrypt certificate (thanks to `HTTP-01` challenge) during the first HTTPS request on a new domain.
@@ -159,16 +159,16 @@ This configuration allows generating a Let's Encrypt certificate (thanks to `HTT
 ### DNS challenge
 
 ```toml
-[entryPoints]
-  [entryPoints.https]
+[entrypoints]
+  [entrypoints.https]
   address = ":443"
-    [entryPoints.https.tls]
+    [entrypoints.https.tls]
 
 [acme]
 email = "test@traefik.io"
 storage = "acme.json"
 caServer = "http://172.18.0.1:4000/directory"
-entryPoint = "https"
+entrypoint = "https"
   [acme.dnsChallenge]
   provider = "digitalocean" # DNS Provider name (cloudflare, OVH, gandi...)
   delayBeforeCheck = 0
@@ -193,16 +193,16 @@ These variables are described [in this section](/configuration/acme/#provider).
 ### DNS challenge with wildcard domains
 
 ```toml
-[entryPoints]
-  [entryPoints.https]
+[entrypoints]
+  [entrypoints.https]
   address = ":443"
-    [entryPoints.https.tls]
+    [entrypoints.https.tls]
 
 [acme]
 email = "test@traefik.io"
 storage = "acme.json"
 caServer = "https://acme-staging-v02.api.letsencrypt.org/directory"
-entryPoint = "https"
+entrypoint = "https"
   [acme.dnsChallenge]
   provider = "digitalocean" # DNS Provider name (cloudflare, OVH, gandi...)
   delayBeforeCheck = 0
@@ -228,13 +228,13 @@ More information about wildcard certificates are available [in this section](/co
 ### OnHostRule option and provided certificates (with HTTP challenge)
 
 ```toml
-[entryPoints]
-  [entryPoints.http]
+[entrypoints]
+  [entrypoints.http]
   address = ":80"
-  [entryPoints.https]
+  [entrypoints.https]
   address = ":443"
-    [entryPoints.https.tls]
-      [[entryPoints.https.tls.certificates]]
+    [entrypoints.https.tls]
+      [[entrypoints.https.tls.certificates]]
       certFile = "examples/traefik.crt"
       keyFile = "examples/traefik.key"
 
@@ -243,9 +243,9 @@ email = "test@traefik.io"
 storage = "acme.json"
 onHostRule = true
 caServer = "http://172.18.0.1:4000/directory"
-entryPoint = "https"
+entrypoint = "https"
   [acme.httpChallenge]
-  entryPoint = "http"
+  entrypoint = "http"
 ```
 
 Træfik will only try to generate a Let's encrypt certificate (thanks to `HTTP-01` challenge) if the domain cannot be checked by the provided certificates.
@@ -259,21 +259,21 @@ Before you use Let's Encrypt in a Traefik cluster, take a look to [the key-value
 #### Configuration
 
 ```toml
-[entryPoints]
-  [entryPoints.http]
+[entrypoints]
+  [entrypoints.http]
   address = ":80"
-  [entryPoints.https]
+  [entrypoints.https]
   address = ":443"
-    [entryPoints.https.tls]
+    [entrypoints.https.tls]
 
 [acme]
 email = "test@traefik.io"
 storage = "traefik/acme/account"
 caServer = "http://172.18.0.1:4000/directory"
-entryPoint = "https"
+entrypoint = "https"
 
 [acme.httpChallenge]
-    entryPoint = "http"
+    entrypoint = "http"
 
 [[acme.domains]]
   main = "local1.com"
@@ -312,17 +312,17 @@ The `consul` provider contains the configuration.
   backend = "backend1"
   passHostHeader = true
   passTLSCert = true
-  entrypoints = ["https"] # overrides defaultEntryPoints
+  entrypoints = ["https"] # overrides defaultEntrypoints
     [frontends.frontend2.routes.test_1]
     rule = "Host:{subdomain:[a-z]+}.localhost"
 
   [frontends.frontend3]
-  entrypoints = ["http", "https"] # overrides defaultEntryPoints
+  entrypoints = ["http", "https"] # overrides defaultEntrypoints
   backend = "backend2"
   rule = "Path:/test"
 ```
 
-## Enable Basic authentication in an entry point
+## Enable Basic authentication in an entrypoint
 
 With two user/pass:
 
@@ -332,12 +332,12 @@ With two user/pass:
 Passwords are encoded in MD5: you can use `htpasswd` to generate them.
 
 ```toml
-defaultEntryPoints = ["http"]
+defaultEntrypoints = ["http"]
 
-[entryPoints]
-  [entryPoints.http]
+[entrypoints]
+  [entrypoints.http]
   address = ":80"
-  [entryPoints.http.auth.basic]
+  [entrypoints.http.auth.basic]
   users = ["test:$apr1$H6uskkkW$IgXLP6ewTrSuBkTrqE8wj/", "test2:$apr1$d9hr9HBB$4HxwgUir3HP4EsggP/QNo0"]
 ```
 
@@ -347,18 +347,18 @@ Providing an authentication method as described above, it is possible to pass th
 via a configurable header value.
 
 ```toml
-defaultEntryPoints = ["http"]
+defaultEntrypoints = ["http"]
 
-[entryPoints]
-  [entryPoints.http]
+[entrypoints]
+  [entrypoints.http]
   address = ":80"
-  [entryPoints.http.auth]
+  [entrypoints.http.auth]
     headerField = "X-WebAuth-User"
-    [entryPoints.http.auth.basic]
+    [entrypoints.http.auth.basic]
     users = ["test:$apr1$H6uskkkW$IgXLP6ewTrSuBkTrqE8wj/", "test2:$apr1$d9hr9HBB$4HxwgUir3HP4EsggP/QNo0"]
 ```
 
-## Override the Traefik HTTP server IdleTimeout and/or throttle configurations from re-loading too quickly
+## Override the Traefik HTTP server idleTimeout and/or throttle configurations from re-loading too quickly
 
 ```toml
 providersThrottleDuration = "5s"

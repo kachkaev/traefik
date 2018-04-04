@@ -103,7 +103,7 @@ domain = "marathon.localhost"
 #    CA = "/etc/ssl/ca.crt"
 #    Cert = "/etc/ssl/marathon.cert"
 #    Key = "/etc/ssl/marathon.key"
-#    InsecureSkipVerify = true
+#    insecureSkipVerify = true
 
 # DCOSToken for DCOS environment.
 # This will override the Authorization header.
@@ -193,7 +193,7 @@ The following labels can be defined on Marathon applications. They adjust the be
 | `traefik.backend.maxconn.amount=10`                        | Set a maximum number of connections to the backend.<br>Must be used in conjunction with the below label to take effect.                                                                                                |
 | `traefik.backend.maxconn.extractorfunc=client.ip`          | Set the function to be used against the request to determine what to limit maximum connections to the backend by.<br>Must be used in conjunction with the above label to take effect.                                  |
 | `traefik.frontend.auth.basic=EXPR`                         | Sets basic authentication for that frontend in CSV format: `User:Hash,User:Hash`                                                                                                                                       |
-| `traefik.frontend.entryPoints=http,https`                  | Assign this frontend to entry points `http` and `https`.<br>Overrides `defaultEntryPoints`                                                                                                                             |
+| `traefik.frontend.entrypoints=http,https`                  | Assign this frontend to entrypoints `http` and `https`.<br>Overrides `defaultEntrypoints`                                                                                                                             |
 | `traefik.frontend.errors.<name>.backend=NAME`              | See [custom error pages](/configuration/commons/#custom-error-pages) section.                                                                                                                                          |
 | `traefik.frontend.errors.<name>.query=PATH`                | See [custom error pages](/configuration/commons/#custom-error-pages) section.                                                                                                                                          |
 | `traefik.frontend.errors.<name>.status=RANGE`              | See [custom error pages](/configuration/commons/#custom-error-pages) section.                                                                                                                                          |
@@ -204,7 +204,7 @@ The following labels can be defined on Marathon applications. They adjust the be
 | `traefik.frontend.rateLimit.rateSet.<name>.period=6`       | See [rate limiting](/configuration/commons/#rate-limiting) section.                                                                                                                                                    |
 | `traefik.frontend.rateLimit.rateSet.<name>.average=6`      | See [rate limiting](/configuration/commons/#rate-limiting) section.                                                                                                                                                    |
 | `traefik.frontend.rateLimit.rateSet.<name>.burst=6`        | See [rate limiting](/configuration/commons/#rate-limiting) section.                                                                                                                                                    |
-| `traefik.frontend.redirect.entryPoint=https`               | Enables Redirect to another entryPoint for that frontend (e.g. HTTPS)                                                                                                                                                  |
+| `traefik.frontend.redirect.entrypoint=https`               | Enables Redirect to another entrypoint for that frontend (e.g. HTTPS)                                                                                                                                                  |
 | `traefik.frontend.redirect.regex=^http://localhost/(.*)`   | Redirect to another URL for that frontend.<br>Must be set with `traefik.frontend.redirect.replacement`.                                                                                                                |
 | `traefik.frontend.redirect.replacement=http://mydomain/$1` | Redirect to another URL for that frontend.<br>Must be set with `traefik.frontend.redirect.regex`.                                                                                                                      |
 | `traefik.frontend.redirect.permanent=true`                 | Return 301 instead of 302.                                                                                                                                                                                             |
@@ -260,7 +260,7 @@ Segment labels override the default behavior.
 | `traefik.<segment_name>.weight=10`                                        | Assign this service weight. Overrides `traefik.weight`.                                              |
 | `traefik.<segment_name>.frontend.auth.basic=EXPR`                         | Sets a Basic Auth for that frontend                                                                  |
 | `traefik.<segment_name>.frontend.backend=BACKEND`                         | Assign this service frontend to `BACKEND`. Default is to assign to the service backend.              |
-| `traefik.<segment_name>.frontend.entryPoints=https`                       | Overrides `traefik.frontend.entrypoints`                                                             |
+| `traefik.<segment_name>.frontend.entrypoints=https`                       | Overrides `traefik.frontend.entrypoints`                                                             |
 | `traefik.<segment_name>.frontend.errors.<name>.backend=NAME`              | See [custom error pages](/configuration/commons/#custom-error-pages) section.                        |
 | `traefik.<segment_name>.frontend.errors.<name>.query=PATH`                | See [custom error pages](/configuration/commons/#custom-error-pages) section.                        |
 | `traefik.<segment_name>.frontend.errors.<name>.status=RANGE`              | See [custom error pages](/configuration/commons/#custom-error-pages) section.                        |
@@ -271,7 +271,7 @@ Segment labels override the default behavior.
 | `traefik.<segment_name>.frontend.rateLimit.rateSet.<name>.period=6`       | See [rate limiting](/configuration/commons/#rate-limiting) section.                                  |
 | `traefik.<segment_name>.frontend.rateLimit.rateSet.<name>.average=6`      | See [rate limiting](/configuration/commons/#rate-limiting) section.                                  |
 | `traefik.<segment_name>.frontend.rateLimit.rateSet.<name>.burst=6`        | See [rate limiting](/configuration/commons/#rate-limiting) section.                                  |
-| `traefik.<segment_name>.frontend.redirect.entryPoint=https`               | Overrides `traefik.frontend.redirect.entryPoint`.                                                    |
+| `traefik.<segment_name>.frontend.redirect.entrypoint=https`               | Overrides `traefik.frontend.redirect.entrypoint`.                                                    |
 | `traefik.<segment_name>.frontend.redirect.regex=^http://localhost/(.*)`   | Overrides `traefik.frontend.redirect.regex`.                                                         |
 | `traefik.<segment_name>.frontend.redirect.replacement=http://mydomain/$1` | Overrides `traefik.frontend.redirect.replacement`.                                                   |
 | `traefik.<segment_name>.frontend.redirect.permanent=true`                 | Return 301 instead of 302.                                                                           |

@@ -1,21 +1,21 @@
 logLevel = "DEBUG"
 
-defaultEntryPoints = ["http", "https"]
+defaultEntrypoints = ["http", "https"]
 
 [api]
 
-[entryPoints]
-  [entryPoints.http]
+[entrypoints]
+  [entrypoints.http]
   address = ":8081"
-  [entryPoints.https]
+  [entrypoints.https]
   address = ":5001"
-    [entryPoints.https.tls]
+    [entrypoints.https.tls]
 
 
 [acme]
 email = "test@traefik.io"
 storage = "/dev/null"
-entryPoint = "https"
+entrypoint = "https"
 OnHostRule = true
 caServer = "http://wrongurl:4001/directory"
 

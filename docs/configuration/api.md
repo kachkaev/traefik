@@ -5,12 +5,12 @@
 ```toml
 # API definition
 [api]
-  # Name of the related entry point
+  # Name of the related entrypoint
   #
   # Optional
   # Default: "traefik"
   #
-  entryPoint = "traefik"
+  entrypoint = "traefik"
 
   # Enabled Dashboard
   #
@@ -30,7 +30,7 @@
   debug = true
 ```
 
-For more customization, see [entry points](/configuration/entrypoints/) documentation and [examples](/user-guide/examples/#ping-health-check).
+For more customization, see [entrypoints](/configuration/entrypoints/) documentation and [examples](/user-guide/examples/#ping-health-check).
 
 ## Web UI
 
@@ -68,23 +68,23 @@ For more customization, see [entry points](/configuration/entrypoints/) document
 You can define a custom address/port like this:
 
 ```toml
-defaultEntryPoints = ["http"]
+defaultEntrypoints = ["http"]
 
-[entryPoints]
-  [entryPoints.http]
+[entrypoints]
+  [entrypoints.http]
   address = ":80"
 
-  [entryPoints.foo]
+  [entrypoints.foo]
   address = ":8082"
 
-  [entryPoints.bar]
+  [entrypoints.bar]
   address = ":8083"
 
 [ping]
-entryPoint = "foo"
+entrypoint = "foo"
 
 [api]
-entryPoint = "bar"
+entrypoint = "bar"
 ```
 
 In the above example, you would access a regular path, administration panel, and health-check as follows:
@@ -93,29 +93,29 @@ In the above example, you would access a regular path, administration panel, and
 * Admin Panel: `http://hostname:8083/`
 * Ping URL: `http://hostname:8082/ping`
 
-In the above example, it is _very_ important to create a named dedicated entry point, and do **not** include it in `defaultEntryPoints`.
-Otherwise, you are likely to expose _all_ services via that entry point.
+In the above example, it is _very_ important to create a named dedicated entrypoint, and do **not** include it in `defaultEntrypoints`.
+Otherwise, you are likely to expose _all_ services via that entrypoint.
 
 ### Custom Path
 
 You can define a custom path like this:
 
 ```toml
-defaultEntryPoints = ["http"]
+defaultEntrypoints = ["http"]
 
-[entryPoints]
-  [entryPoints.http]
+[entrypoints]
+  [entrypoints.http]
   address = ":80"
 
-  [entryPoints.foo]
+  [entrypoints.foo]
   address = ":8080"
 
-  [entryPoints.bar]
+  [entrypoints.bar]
   address = ":8081"
 
 # Activate API and Dashboard
 [api]
-entryPoint = "bar"
+entrypoint = "bar"
 dashboard = true
 
 [file]
@@ -126,7 +126,7 @@ dashboard = true
 
   [frontends]
     [frontends.frontend1]
-    entryPoints = ["foo"]
+    entrypoints = ["foo"]
     backend = "backend1"
       [frontends.frontend1.routes.test_1]
       rule = "PathPrefixStrip:/yourprefix;PathPrefix:/yourprefix"
@@ -137,16 +137,16 @@ dashboard = true
 You can define the authentication like this:
 
 ```toml
-defaultEntryPoints = ["http"]
+defaultEntrypoints = ["http"]
 
-[entryPoints]
-  [entryPoints.http]
+[entrypoints]
+  [entrypoints.http]
   address = ":80"
 
- [entryPoints.foo]
+ [entrypoints.foo]
    address=":8080"
-   [entryPoints.foo.auth]
-     [entryPoints.foo.auth.basic]
+   [entrypoints.foo.auth]
+     [entrypoints.foo.auth.basic]
        users = [
          "test:$apr1$H6uskkkW$IgXLP6ewTrSuBkTrqE8wj/",
          "test2:$apr1$d9hr9HBB$4HxwgUir3HP4EsggP/QNo0",
@@ -156,7 +156,7 @@ defaultEntryPoints = ["http"]
 entrypoint="foo"
 ```
 
-For more information, see [entry points](/configuration/entrypoints/) .
+For more information, see [entrypoints](/configuration/entrypoints/) .
 
 ### Provider call example
 

@@ -65,7 +65,7 @@
     passHostHeader = {{ getPassHostHeader $app.SegmentLabels }}
     passTLSCert = {{ getPassTLSCert $app.SegmentLabels }}
 
-    entryPoints = [{{range getEntryPoints $app.SegmentLabels }}
+    entrypoints = [{{range getEntrypoints $app.SegmentLabels }}
       "{{.}}",
       {{end}}]
 
@@ -85,7 +85,7 @@
     {{ $redirect := getRedirect $app.SegmentLabels }}
     {{if $redirect }}
     [frontends."{{ $frontendName }}".redirect]
-      entryPoint = "{{ $redirect.EntryPoint }}"
+      entrypoint = "{{ $redirect.Entrypoint }}"
       regex = "{{ $redirect.Regex }}"
       replacement = "{{ $redirect.Replacement }}"
       permanent = {{ $redirect.Permanent }}

@@ -1,11 +1,11 @@
-defaultEntryPoints = ["http"]
+defaultEntrypoints = ["http"]
 
 logLevel = "DEBUG"
 
-[entryPoints]
-  [entryPoints.http]
+[entrypoints]
+  [entrypoints.http]
   address = ":8080"
-  [entryPoints.api]
+  [entrypoints.api]
   address = ":8081"
 
 [dynamodb]
@@ -15,4 +15,4 @@ logLevel = "DEBUG"
   Region = "us-east-1"
 
 [api]
-  entryPoint = "api"
+  entrypoint = "api"

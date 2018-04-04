@@ -1,15 +1,15 @@
-defaultEntryPoints = ["http","https"]
+defaultEntrypoints = ["http","https"]
 
 logLevel = "DEBUG"
 
-[entryPoints]
-  [entryPoints.api]
+[entrypoints]
+  [entrypoints.api]
   address = ":8081"
-  [entryPoints.http]
+  [entrypoints.http]
   address = ":8000"
-  [entryPoints.https]
+  [entrypoints.https]
   address = ":4443"
-        [entryPoints.https.tls]
+        [entrypoints.https.tls]
 
 
 
@@ -20,4 +20,4 @@ logLevel = "DEBUG"
 
 
 [api]
-  entryPoint = "api"
+  entrypoint = "api"

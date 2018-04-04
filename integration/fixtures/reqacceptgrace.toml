@@ -1,12 +1,12 @@
-defaultEntryPoints = ["http"]
+defaultEntrypoints = ["http"]
 
 logLevel = "DEBUG"
 
-[entryPoints]
-  [entryPoints.http]
+[entrypoints]
+  [entrypoints.http]
   address = ":8000"
 
-  [entryPoints.traefik]
+  [entrypoints.traefik]
   address = ":8001"
 
 [lifeCycle]

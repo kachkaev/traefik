@@ -1,10 +1,10 @@
-defaultEntryPoints = ["http"]
+defaultEntrypoints = ["http"]
 logLevel = "DEBUG"
 
 [api]
 
-[entryPoints]
-  [entryPoints.http]
+[entrypoints]
+  [entrypoints.http]
   address = ":8000"
 
 [consulCatalog]

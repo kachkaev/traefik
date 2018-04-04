@@ -118,11 +118,11 @@ server {
 Here is the `traefik.toml` file used:
 
 ```toml
-MaxIdleConnsPerHost = 100000
-defaultEntryPoints = ["http"]
+maxIdleConnsPerHost = 100000
+defaultEntrypoints = ["http"]
 
-[entryPoints]
-  [entryPoints.http]
+[entrypoints]
+  [entrypoints.http]
   address = ":8000"
 
 [file]

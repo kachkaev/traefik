@@ -62,7 +62,7 @@
     passHostHeader = {{ getPassHostHeader $frontend }}
     passTLSCert = {{ getPassTLSCert $frontend }}
 
-    entryPoints = [{{range getEntryPoints $frontend }}
+    entrypoints = [{{range getEntrypoints $frontend }}
       "{{.}}",
       {{end}}]
 
@@ -82,7 +82,7 @@
     {{ $redirect := getRedirect $frontend }}
     {{if $redirect }}
     [frontends."{{ $frontendName }}".redirect]
-      entryPoint = "{{ $redirect.EntryPoint }}"
+      entrypoint = "{{ $redirect.Entrypoint }}"
       regex = "{{ $redirect.Regex }}"
       replacement = "{{ $redirect.Replacement }}"
       permanent = {{ $redirect.Permanent }}
@@ -178,7 +178,7 @@
 {{range $tls := getTLSSection .Prefix }}
 [[tls]]
 
-  entryPoints = [{{range $tls.EntryPoints }}
+  entrypoints = [{{range $tls.Entrypoints }}
     "{{.}}",
     {{end}}]
 

@@ -17,7 +17,7 @@
     rule = "Host:snitest.org"
 
 [[tls]]
-entryPoints = ["https"]
+entrypoints = ["https"]
   [tls.certificate]
     certFile = """-----BEGIN CERTIFICATE-----
 MIIC/zCCAeegAwIBAgIJALAYHG/vGqWEMA0GCSqGSIb3DQEBBQUAMBYxFDASBgNV

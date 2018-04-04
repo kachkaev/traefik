@@ -45,7 +45,7 @@ Træfik can be configured with a file.
 [frontends]
 
   [frontends.frontend1]
-    entryPoints = ["http", "https"]
+    entrypoints = ["http", "https"]
     backend = "backend1"
     passHostHeader = true
     passTLSCert = true
@@ -121,7 +121,7 @@ Træfik can be configured with a file.
         # ...
 
     [frontends.frontend1.redirect]
-      entryPoint = "https"
+      entrypoint = "https"
       regex = "^http://localhost/(.*)"
       replacement = "http://mydomain/$1"
       permanent = true
@@ -131,7 +131,7 @@ Træfik can be configured with a file.
 
 # HTTPS certificates
 [[tls]]
-  entryPoints = ["https"]
+  entrypoints = ["https"]
   [tls.certificate]
     certFile = "path/to/my.cert"
     keyFile = "path/to/my.key"
@@ -157,12 +157,12 @@ The configuration file allows managing both backends/frontends and HTTPS certifi
 Add your configuration at the end of the global configuration file `traefik.toml`:
 
 ```toml
-defaultEntryPoints = ["http", "https"]
+defaultEntrypoints = ["http", "https"]
 
-[entryPoints]
-  [entryPoints.http]
+[entrypoints]
+  [entrypoints.http]
     # ...
-  [entryPoints.https]
+  [entrypoints.https]
     # ...
 
 [file]
@@ -191,10 +191,10 @@ defaultEntryPoints = ["http", "https"]
 ```
 
 !!! note
-    If `tls.entryPoints` is not defined, the certificate is attached to all the `defaultEntryPoints` with a TLS configuration.
+    If `tls.entrypoints` is not defined, the certificate is attached to all the `defaultEntrypoints` with a TLS configuration.
 
 !!! note
-    Adding certificates directly to the entryPoint is still maintained but certificates declared in this way cannot be managed dynamically.
+    Adding certificates directly to the entrypoint is still maintained but certificates declared in this way cannot be managed dynamically.
     It's recommended to use the file provider to declare certificates.
 
 ### Rules in a Separate File
@@ -203,12 +203,12 @@ Put your rules in a separate file, for example `rules.toml`:
 
 ```toml
 # traefik.toml
-defaultEntryPoints = ["http", "https"]
+defaultEntrypoints = ["http", "https"]
 
-[entryPoints]
-  [entryPoints.http]
+[entrypoints]
+  [entrypoints.http]
     # ...
-  [entryPoints.https]
+  [entrypoints.https]
     # ...
 
 [file]

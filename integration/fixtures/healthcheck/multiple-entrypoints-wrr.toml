@@ -1,11 +1,11 @@
-defaultEntryPoints = ["http1", "http2"]
+defaultEntrypoints = ["http1", "http2"]
 
 logLevel = "DEBUG"
 
-[entryPoints]
-  [entryPoints.http1]
+[entrypoints]
+  [entrypoints.http1]
   address = ":8000"
-  [entryPoints.http2]
+  [entrypoints.http2]
   address = ":9000"
 
 [api]

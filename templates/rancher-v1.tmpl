@@ -38,7 +38,7 @@
     passHostHeader = {{ getPassHostHeader $service }}
     priority = {{ getPriority $service }}
 
-  entryPoints = [{{range getEntryPoints $service }}
+  entrypoints = [{{range getEntrypoints $service }}
       "{{.}}",
     {{end}}]
 
@@ -48,7 +48,7 @@
 
   {{if hasRedirect $service }}
   [frontends."frontend-{{ $frontendName }}".redirect]
-    entryPoint = "{{ getRedirectEntryPoint $service }}"
+    entrypoint = "{{ getRedirectEntrypoint $service }}"
     regex = "{{ getRedirectRegex $service }}"
     replacement = "{{ getRedirectReplacement $service }}"
   {{end}}

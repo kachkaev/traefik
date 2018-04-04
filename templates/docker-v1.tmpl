@@ -62,7 +62,7 @@
 
     priority = {{ getServicePriority $container $serviceName }}
 
-    entryPoints = [{{range getServiceEntryPoints $container $serviceName }}
+    entrypoints = [{{range getServiceEntrypoints $container $serviceName }}
       "{{.}}",
       {{end}}]
 
@@ -72,7 +72,7 @@
 
     {{if hasServiceRedirect $container $serviceName }}
       [frontends."frontend-{{ getServiceBackend $container $serviceName }}".redirect]
-        entryPoint = "{{ getServiceRedirectEntryPoint $container $serviceName }}"
+        entrypoint = "{{ getServiceRedirectEntrypoint $container $serviceName }}"
         regex = "{{ getServiceRedirectRegex $container $serviceName }}"
         replacement = "{{ getServiceRedirectReplacement $container $serviceName }}"
     {{end}}
@@ -93,7 +93,7 @@
       {{end}}]
     {{end}}
 
-    entryPoints = [{{range getEntryPoints $container }}
+    entrypoints = [{{range getEntrypoints $container }}
       "{{.}}",
       {{end}}]
 
@@ -103,7 +103,7 @@
 
     {{if hasRedirect $container}}
       [frontends."frontend-{{$frontend}}".redirect]
-        entryPoint = "{{getRedirectEntryPoint $container}}"
+        entrypoint = "{{getRedirectEntrypoint $container}}"
         regex = "{{getRedirectRegex $container}}"
         replacement = "{{getRedirectReplacement $container}}"
     {{end}}

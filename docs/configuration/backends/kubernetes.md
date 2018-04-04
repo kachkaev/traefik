@@ -114,7 +114,7 @@ If the service port defined in the ingress spec is 443, then the backend communi
 !!! note
     Please note that by enabling TLS communication between traefik and your pods, you will have to have trusted certificates that have the proper trust chain and IP subject name. 
     If this is not an option, you may need to skip TLS certificate verification.
-    See the [InsecureSkipVerify](/configuration/commons/#main-section) setting for more details.
+    See the [insecureSkipVerify](/configuration/commons/#main-section) setting for more details.
 
 ## Annotations
 
@@ -131,7 +131,7 @@ The following general annotations are applicable on the Ingress object:
 | `traefik.ingress.kubernetes.io/preserve-host: "true"`                           | Forward client `Host` header to the backend.                                                                                                    |
 | `traefik.ingress.kubernetes.io/priority: "3"`                                   | Override the default frontend rule priority.                                                                                                    |
 | `traefik.ingress.kubernetes.io/rate-limit: <YML>`                               | (2) See [rate limiting](/configuration/commons/#rate-limiting) section.                                                                         |
-| `traefik.ingress.kubernetes.io/redirect-entry-point: https`                     | Enables Redirect to another entryPoint for that frontend (e.g. HTTPS).                                                                          |
+| `traefik.ingress.kubernetes.io/redirect-entry-point: https`                     | Enables Redirect to another entrypoint for that frontend (e.g. HTTPS).                                                                          |
 | `traefik.ingress.kubernetes.io/redirect-permanent: "true"`                      | Return 301 instead of 302.                                                                                                                      |
 | `traefik.ingress.kubernetes.io/redirect-regex: ^http://localhost/(.*)`          | Redirect to another URL for that frontend. Must be set with `traefik.ingress.kubernetes.io/redirect-replacement`.                               |
 | `traefik.ingress.kubernetes.io/redirect-replacement: http://mydomain/$1`        | Redirect to another URL for that frontend. Must be set with `traefik.ingress.kubernetes.io/redirect-regex`.                                     |

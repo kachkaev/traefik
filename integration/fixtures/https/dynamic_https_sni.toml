@@ -1,14 +1,14 @@
 logLevel = "DEBUG"
 
-defaultEntryPoints = ["https"]
+defaultEntrypoints = ["https"]
 
-[entryPoints]
-  [entryPoints.https]
+[entrypoints]
+  [entrypoints.https]
   address = ":4443"
-  [entryPoints.https.tls]
-  [entryPoints.https02]
+  [entrypoints.https.tls]
+  [entrypoints.https02]
   address = ":8443"
-  [entryPoints.https02.tls]
+  [entrypoints.https02.tls]
 
 [api]
 

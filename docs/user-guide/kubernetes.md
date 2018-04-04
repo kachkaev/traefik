@@ -387,7 +387,7 @@ If there are any errors while loading the TLS section of an ingress, the whole i
     The secret must have two entries named `tls.key`and `tls.crt`. See the [Kubernetes documentation](https://kubernetes.io/docs/concepts/services-networking/ingress/#tls) for more details.
 
 !!! note
-    The TLS certificates will be added to all entrypoints defined by the ingress annotation `traefik.frontend.entryPoints`. If no such annotation is provided, the TLS certificates will be added to all TLS-enabled `defaultEntryPoints`.
+    The TLS certificates will be added to all entrypoints defined by the ingress annotation `traefik.frontend.entrypoints`. If no such annotation is provided, the TLS certificates will be added to all TLS-enabled `defaultEntrypoints`.
 
 !!! note
     The field `hosts` in the TLS configuration is ignored. Instead, the domains provided by the certificate are used for this purpose. It is recommended to not use wildcard certificates as they will match globally.

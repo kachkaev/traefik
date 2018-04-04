@@ -29,23 +29,23 @@ What Træfik should do:
 - Generate SSL certificate when a domain is added
 - Listen to Docker Swarm event
 
-### EntryPoints configuration
+### Entrypoints configuration
 
 TL;DR:
 
 ```shell    
 $ traefik \
-    --entrypoints='Name:http Address::80 Redirect.EntryPoint:https' \
+    --entrypoints='Name:http Address::80 Redirect.Entrypoint:https' \
     --entrypoints='Name:https Address::443 TLS' \
-    --defaultentrypoints=http,https
+    --defaultEntrypoints=http,https
 ```
 
-To listen to different ports, we need to create an entry point for each.
+To listen to different ports, we need to create an entrypoint for each.
 
 The CLI syntax is `--entrypoints='Name:a_name Address:an_ip_or_empty:a_port options'`.
-If you want to redirect traffic from one entry point to another, it's the option `Redirect.EntryPoint:entrypoint_name`.
+If you want to redirect traffic from one entrypoint to another, it's the option `Redirect.Entrypoint:entrypoint_name`.
 
-By default, we don't want to configure all our services to listen on http and https, we add a default entry point configuration: `--defaultentrypoints=http,https`.
+By default, we don't want to configure all our services to listen on http and https, we add a default entrypoint configuration: `--defaultEntrypoints=http,https`.
 
 ### Let's Encrypt configuration
 
@@ -55,20 +55,20 @@ TL;DR:
 $ traefik \
     --acme \
     --acme.storage=/etc/traefik/acme/acme.json \
-    --acme.entryPoint=https \
-    --acme.httpChallenge.entryPoint=http \
+    --acme.entrypoint=https \
+    --acme.httpChallenge.entrypoint=http \
     --acme.email=contact@mydomain.ca
 ```
 
-Let's Encrypt needs 4 parameters: an TLS entry point to listen to, a non-TLS entry point to allow HTTP challenges, a storage for certificates, and an email for the registration.
+Let's Encrypt needs 4 parameters: an TLS entrypoint to listen to, a non-TLS entrypoint to allow HTTP challenges, a storage for certificates, and an email for the registration.
 
 To enable Let's Encrypt support, you need to add `--acme` flag.
 
 Now, Træfik needs to know where to store the certificates, we can choose between a key in a Key-Value store, or a file path: `--acme.storage=my/key` or `--acme.storage=/path/to/acme.json`.
 
-The `acme.httpChallenge.entryPoint` flag enables the `HTTP-01` challenge and specifies the entryPoint to use during the challenges.
+The `acme.httpChallenge.entrypoint` flag enables the `HTTP-01` challenge and specifies the entrypoint to use during the challenges.
 
-For your email and the entry point, it's `--acme.entryPoint` and `--acme.email` flags.
+For your email and the entrypoint, it's `--acme.entrypoint` and `--acme.email` flags.
 
 ### Docker configuration
 
@@ -77,12 +77,12 @@ TL;DR:
 ```shell
 $ traefik \
     --docker \
-    --docker.swarmmode \
+    --docker.swarmMode \
     --docker.domain=mydomain.ca \
     --docker.watch
 ```
 
-To enable docker and swarm-mode support, you need to add `--docker` and `--docker.swarmmode` flags.
+To enable docker and swarm-mode support, you need to add `--docker` and `--docker.swarmMode` flags.
 To watch docker events, add `--docker.watch`.
 
 ### Full docker-compose file
@@ -94,18 +94,18 @@ services:
     image: traefik:1.5
     command:
       - "--api"
-      - "--entrypoints=Name:http Address::80 Redirect.EntryPoint:https"
+      - "--entrypoints=Name:http Address::80 Redirect.Entrypoint:https"
       - "--entrypoints=Name:https Address::443 TLS"
-      - "--defaultentrypoints=http,https"
+      - "--defaultEntrypoints=http,https"
       - "--acme"
       - "--acme.storage=/etc/traefik/acme/acme.json"
-      - "--acme.entryPoint=https"
-      - "--acme.httpChallenge.entryPoint=http"
+      - "--acme.entrypoint=https"
+      - "--acme.httpChallenge.entrypoint=http"
       - "--acme.OnHostRule=true"
       - "--acme.onDemand=false"
       - "--acme.email=contact@mydomain.ca"
       - "--docker"
-      - "--docker.swarmmode"
+      - "--docker.swarmMode"
       - "--docker.domain=mydomain.ca"
       - "--docker.watch"
     volumes:
@@ -204,18 +204,18 @@ services:
     command:
       - "storeconfig"
       - "--api"
-      - "--entrypoints=Name:http Address::80 Redirect.EntryPoint:https"
+      - "--entrypoints=Name:http Address::80 Redirect.Entrypoint:https"
       - "--entrypoints=Name:https Address::443 TLS"
-      - "--defaultentrypoints=http,https"
+      - "--defaultEntrypoints=http,https"
       - "--acme"
       - "--acme.storage=traefik/acme/account"
-      - "--acme.entryPoint=https"
-      - "--acme.httpChallenge.entryPoint=http"
+      - "--acme.entrypoint=https"
+      - "--acme.httpChallenge.entrypoint=http"
       - "--acme.OnHostRule=true"
       - "--acme.onDemand=false"
       - "--acme.email=foobar@example.com"
       - "--docker"
-      - "--docker.swarmmode"
+      - "--docker.swarmMode"
       - "--docker.domain=example.com"
       - "--docker.watch"
       - "--consul"

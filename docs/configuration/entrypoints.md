@@ -1,74 +1,74 @@
-# Entry Points Definition
+# Entrypoints Definition
 
 ## Reference
 
 ### TOML
 
 ```toml
-[entryPoints]
-  [entryPoints.http]
+[entrypoints]
+  [entrypoints.http]
     address = ":80"
     compress = true
 
-    [entryPoints.http.whitelist]
+    [entrypoints.http.whitelist]
       sourceRange = ["10.42.0.0/16", "152.89.1.33/32", "afed:be44::/16"]
       useXForwardedFor = true
 
-    [entryPoints.http.tls]
+    [entrypoints.http.tls]
       minVersion = "VersionTLS12"
       cipherSuites = [
         "TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256",
         "TLS_RSA_WITH_AES_256_GCM_SHA384"
        ]
-      [[entryPoints.http.tls.certificates]]
+      [[entrypoints.http.tls.certificates]]
         certFile = "path/to/my.cert"
         keyFile = "path/to/my.key"
-      [[entryPoints.http.tls.certificates]]
+      [[entrypoints.http.tls.certificates]]
         certFile = "path/to/other.cert"
         keyFile = "path/to/other.key"
       # ...
-      [entryPoints.http.tls.clientCA]
+      [entrypoints.http.tls.clientCA]
         files = ["path/to/ca1.crt", "path/to/ca2.crt"]
         optional = false
 
-    [entryPoints.http.redirect]
-      entryPoint = "https"
+    [entrypoints.http.redirect]
+      entrypoint = "https"
       regex = "^http://localhost/(.*)"
       replacement = "http://mydomain/$1"
       permanent = true
 
-    [entryPoints.http.auth]
+    [entrypoints.http.auth]
       headerField = "X-WebAuth-User"
-      [entryPoints.http.auth.basic]
+      [entrypoints.http.auth.basic]
         users = [
           "test:$apr1$H6uskkkW$IgXLP6ewTrSuBkTrqE8wj/",
           "test2:$apr1$d9hr9HBB$4HxwgUir3HP4EsggP/QNo0",
         ]
         usersFile = "/path/to/.htpasswd"
-      [entryPoints.http.auth.digest]
+      [entrypoints.http.auth.digest]
         users = [
           "test:traefik:a2688e031edb4be6a3797f3882655c05",
           "test2:traefik:518845800f9e2bfb1f1f740ec24f074e",
         ]
         usersFile = "/path/to/.htdigest"
-      [entryPoints.http.auth.forward]
+      [entrypoints.http.auth.forward]
         address = "https://authserver.com/auth"
         trustForwardHeader = true
-        [entryPoints.http.auth.forward.tls]
+        [entrypoints.http.auth.forward.tls]
           ca =  [ "path/to/local.crt"]
           caOptional = true
           cert = "path/to/foo.cert"
           key = "path/to/foo.key"
           insecureSkipVerify = true
 
-    [entryPoints.http.proxyProtocol]
+    [entrypoints.http.proxyProtocol]
       insecure = true
       trustedIPs = ["10.10.10.1", "10.10.10.2"]
 
-    [entryPoints.http.forwardedHeaders]
+    [entrypoints.http.forwardedHeaders]
       trustedIPs = ["10.10.10.1", "10.10.10.2"]
 
-  [entryPoints.https]
+  [entrypoints.https]
     # ...
 ```
 
@@ -77,8 +77,8 @@
 For more information about the CLI, see the documentation about [Traefik command](/basics/#traefik).
 
 ```shell
---entryPoints='Name:http Address::80'
---entryPoints='Name:https Address::443 TLS'
+--entrypoints='Name:http Address::80'
+--entrypoints='Name:https Address::443 TLS'
 ```
 
 !!! note
@@ -91,14 +91,14 @@ In compose file the entrypoint syntax is different:
 traefik:
     image: traefik
     command:
-        - --defaultentrypoints=powpow
-        - "--entryPoints=Name:powpow Address::42 Compress:true"
+        - --defaultEntrypoints=powpow
+        - "--entrypoints=Name:powpow Address::42 Compress:true"
 ```
 or
 ```yaml
 traefik:
     image: traefik
-    command: --defaultentrypoints=powpow --entryPoints='Name:powpow Address::42 Compress:true'
+    command: --defaultEntrypoints=powpow --entrypoints='Name:powpow Address::42 Compress:true'
 ```
 
 #### All available options:
@@ -112,7 +112,7 @@ TLS.MinVersion:VersionTLS11
 TLS.CipherSuites:TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA384
 CA:car
 CA.Optional:true
-Redirect.EntryPoint:https
+Redirect.Entrypoint:https
 Redirect.Regex:http://localhost/(.*)
 Redirect.Replacement:http://mydomain/$1
 Redirect.Permanent:true
@@ -140,12 +140,12 @@ Auth.Forward.TLS.InsecureSkipVerify:true
 # Entrypoints definition
 #
 # Default:
-# [entryPoints]
-#   [entryPoints.http]
+# [entrypoints]
+#   [entrypoints.http]
 #   address = ":80"
 #
-[entryPoints]
-  [entryPoints.http]
+[entrypoints]
+  [entrypoints.http]
   address = ":80"
 ```
 
@@ -154,18 +154,18 @@ Auth.Forward.TLS.InsecureSkipVerify:true
 To redirect an http entrypoint to an https entrypoint (with SNI support).
 
 ```toml
-[entryPoints]
-  [entryPoints.http]
+[entrypoints]
+  [entrypoints.http]
   address = ":80"
-    [entryPoints.http.redirect]
-    entryPoint = "https"
-  [entryPoints.https]
+    [entrypoints.http.redirect]
+    entrypoint = "https"
+  [entrypoints.https]
   address = ":443"
-    [entryPoints.https.tls]
-      [[entryPoints.https.tls.certificates]]
+    [entrypoints.https.tls]
+      [[entrypoints.https.tls.certificates]]
       certFile = "integration/fixtures/https/snitest.com.cert"
       keyFile = "integration/fixtures/https/snitest.com.key"
-      [[entryPoints.https.tls.certificates]]
+      [[entrypoints.https.tls.certificates]]
       certFile = "integration/fixtures/https/snitest.org.cert"
       keyFile = "integration/fixtures/https/snitest.org.key"
 ```
@@ -178,10 +178,10 @@ To redirect an http entrypoint to an https entrypoint (with SNI support).
 To redirect an entrypoint rewriting the URL.
 
 ```toml
-[entryPoints]
-  [entryPoints.http]
+[entrypoints]
+  [entrypoints.http]
   address = ":80"
-    [entryPoints.http.redirect]
+    [entrypoints.http.redirect]
     regex = "^http://localhost/(.*)"
     replacement = "http://mydomain/$1"
 ```
@@ -200,11 +200,11 @@ Regular expressions and replacements can be tested using online tools such as [G
 Define an entrypoint with SNI support.
 
 ```toml
-[entryPoints]
-  [entryPoints.https]
+[entrypoints]
+  [entrypoints.https]
   address = ":443"
-    [entryPoints.https.tls]
-      [[entryPoints.https.tls.certificates]]
+    [entrypoints.https.tls]
+      [[entrypoints.https.tls.certificates]]
       certFile = "integration/fixtures/https/snitest.com.cert"
       keyFile = "integration/fixtures/https/snitest.com.key"
 ```
@@ -232,17 +232,17 @@ The requirement will apply to all server certs in the entrypoint.
 In the example below both `snitest.com` and `snitest.org` will require client certs
 
 ```toml
-[entryPoints]
-  [entryPoints.https]
+[entrypoints]
+  [entrypoints.https]
   address = ":443"
-  [entryPoints.https.tls]
-    [entryPoints.https.tls.ClientCA]
+  [entrypoints.https.tls]
+    [entrypoints.https.tls.ClientCA]
     files = ["tests/clientca1.crt", "tests/clientca2.crt"]
     optional = false
-    [[entryPoints.https.tls.certificates]]
+    [[entrypoints.https.tls.certificates]]
     certFile = "integration/fixtures/https/snitest.com.cert"
     keyFile = "integration/fixtures/https/snitest.com.key"
-    [[entryPoints.https.tls.certificates]]
+    [[entrypoints.https.tls.certificates]]
     certFile = "integration/fixtures/https/snitest.org.cert"
     keyFile = "integration/fixtures/https/snitest.org.key"
 ```
@@ -262,10 +262,10 @@ Users can be specified directly in the TOML file, or indirectly by referencing a
 
 ```toml
 # To enable basic auth on an entrypoint with 2 user/pass: test:test and test2:test2
-[entryPoints]
-  [entryPoints.http]
+[entrypoints]
+  [entrypoints.http]
   address = ":80"
-  [entryPoints.http.auth.basic]
+  [entrypoints.http.auth.basic]
   users = ["test:$apr1$H6uskkkW$IgXLP6ewTrSuBkTrqE8wj/", "test2:$apr1$d9hr9HBB$4HxwgUir3HP4EsggP/QNo0"]
   usersFile = "/path/to/.htpasswd"
 ```
@@ -279,10 +279,10 @@ Users can be specified directly in the TOML file, or indirectly by referencing a
 
 ```toml
 # To enable digest auth on an entrypoint with 2 user/realm/pass: test:traefik:test and test2:traefik:test2
-[entryPoints]
-  [entryPoints.http]
+[entrypoints]
+  [entrypoints.http]
   address = ":80"
-  [entryPoints.http.auth.digest]
+  [entrypoints.http.auth.digest]
   users = ["test:traefik:a2688e031edb4be6a3797f3882655c05", "test2:traefik:518845800f9e2bfb1f1f740ec24f074e"]
   usersFile = "/path/to/.htdigest"
 ```
@@ -295,11 +295,11 @@ If the response code is 2XX, access is granted and the original request is perfo
 Otherwise, the response from the authentication server is returned.
 
 ```toml
-[entryPoints]
-  [entryPoints.http]
+[entrypoints]
+  [entrypoints.http]
     # ...
     # To enable forward auth on an entrypoint
-    [entryPoints.http.auth.forward]
+    [entrypoints.http.auth.forward]
     address = "https://authserver.com/auth"
 
     # Trust existing X-Forwarded-* headers.
@@ -314,29 +314,29 @@ Otherwise, the response from the authentication server is returned.
     #
     # Optional
     #
-    [entryPoints.http.auth.forward.tls]
+    [entrypoints.http.auth.forward.tls]
     cert = "authserver.crt"
     key = "authserver.key"
 ```
 
 ## Specify Minimum TLS Version
 
-To specify an https entry point with a minimum TLS version, and specifying an array of cipher suites (from [crypto/tls](https://godoc.org/crypto/tls#pkg-constants)).
+To specify an https entrypoint with a minimum TLS version, and specifying an array of cipher suites (from [crypto/tls](https://godoc.org/crypto/tls#pkg-constants)).
 
 ```toml
-[entryPoints]
-  [entryPoints.https]
+[entrypoints]
+  [entrypoints.https]
   address = ":443"
-    [entryPoints.https.tls]
+    [entrypoints.https.tls]
     minVersion = "VersionTLS12"
     cipherSuites = [
       "TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256",
       "TLS_RSA_WITH_AES_256_GCM_SHA384"
     ]
-      [[entryPoints.https.tls.certificates]]
+      [[entrypoints.https.tls.certificates]]
       certFile = "integration/fixtures/https/snitest.com.cert"
       keyFile = "integration/fixtures/https/snitest.com.key"
-      [[entryPoints.https.tls.certificates]]
+      [[entrypoints.https.tls.certificates]]
       certFile = "integration/fixtures/https/snitest.org.cert"
       keyFile = "integration/fixtures/https/snitest.org.key"
 ```
@@ -346,8 +346,8 @@ To specify an https entry point with a minimum TLS version, and specifying an ar
 To enable compression support using gzip format.
 
 ```toml
-[entryPoints]
-  [entryPoints.http]
+[entrypoints]
+  [entrypoints.http]
   address = ":80"
   compress = true
 ```
@@ -360,14 +360,14 @@ Responses are compressed when:
 
 ## White Listing
 
-To enable IP white listing at the entry point level.
+To enable IP white listing at the entrypoint level.
 
 ```toml
-[entryPoints]
-  [entryPoints.http]
+[entrypoints]
+  [entrypoints.http]
     address = ":80"
 
-    [entryPoints.http.whiteList]
+    [entrypoints.http.whiteList]
       sourceRange = ["127.0.0.1/32", "192.168.1.7"]
       # useXForwardedFor = true
 ```
@@ -382,12 +382,12 @@ Only IPs in `trustedIPs` will lead to remote client address replacement: you sho
     Otherwise, it could introduce a security risk in your system by forging requests.
 
 ```toml
-[entryPoints]
-  [entryPoints.http]
+[entrypoints]
+  [entrypoints.http]
     address = ":80"
 
     # Enable ProxyProtocol
-    [entryPoints.http.proxyProtocol]
+    [entrypoints.http.proxyProtocol]
       # List of trusted IPs
       #
       # Required
@@ -408,12 +408,12 @@ Only IPs in `trustedIPs` will lead to remote client address replacement: you sho
 Only IPs in `trustedIPs` will be authorized to trust the client forwarded headers (`X-Forwarded-*`).
 
 ```toml
-[entryPoints]
-  [entryPoints.http]
+[entrypoints]
+  [entrypoints.http]
     address = ":80"
 
     # Enable Forwarded Headers
-    [entryPoints.http.forwardedHeaders]
+    [entrypoints.http.forwardedHeaders]
       # List of trusted IPs
       #
       # Required

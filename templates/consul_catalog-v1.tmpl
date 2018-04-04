@@ -40,9 +40,9 @@
   passHostHeader = {{ getAttribute "frontend.passHostHeader" .Attributes "true" }}
   priority = {{ getAttribute "frontend.priority" .Attributes "0" }}
 
-  {{ $entryPoints := getAttribute "frontend.entrypoints" .Attributes "" }}
-  {{with $entryPoints }}
-    entrypoints = [{{range getEntryPoints $entryPoints }}
+  {{ $entrypoints := getAttribute "frontend.entrypoints" .Attributes "" }}
+  {{with $entrypoints }}
+    entrypoints = [{{range getEntrypoints $entrypoints }}
       "{{ . }}",
     {{end}}]
   {{end}}

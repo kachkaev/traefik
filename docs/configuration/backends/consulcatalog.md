@@ -47,7 +47,7 @@ prefix = "traefik"
 # Optional
 # Default: "Host:{{.ServiceName}}.{{.Domain}}"
 #
-#frontEndRule = "Host:{{.ServiceName}}.{{.Domain}}"
+# frontEndRule = "Host:{{.ServiceName}}.{{.Domain}}"
 
 # Enable Consul catalog TLS connection.
 #
@@ -57,7 +57,7 @@ prefix = "traefik"
 #    ca = "/etc/ssl/ca.crt"
 #    cert = "/etc/ssl/consul.crt"
 #    key = "/etc/ssl/consul.key"
-#    insecureskipverify = true
+#    insecureSkipVerify = true
 
 # Override default configuration template.
 # For advanced users :)
@@ -109,7 +109,7 @@ Additional settings can be defined using Consul Catalog tags.
 | `<prefix>.backend.maxconn.amount=10`                        | Set a maximum number of connections to the backend.<br>Must be used in conjunction with the below label to take effect.                                                                                                |
 | `<prefix>.backend.maxconn.extractorfunc=client.ip`          | Set the function to be used against the request to determine what to limit maximum connections to the backend by.<br>Must be used in conjunction with the above label to take effect.                                  |
 | `<prefix>.frontend.auth.basic=EXPR`                         | Sets basic authentication for that frontend in CSV format: `User:Hash,User:Hash`                                                                                                                                       |
-| `<prefix>.frontend.entryPoints=http,https`                  | Assign this frontend to entry points `http` and `https`.<br>Overrides `defaultEntryPoints`                                                                                                                             |
+| `<prefix>.frontend.entrypoints=http,https`                  | Assign this frontend to entrypoints `http` and `https`.<br>Overrides `defaultEntrypoints`                                                                                                                             |
 | `<prefix>.frontend.errors.<name>.backend=NAME`              | See [custom error pages](/configuration/commons/#custom-error-pages) section.                                                                                                                                          |
 | `<prefix>.frontend.errors.<name>.query=PATH`                | See [custom error pages](/configuration/commons/#custom-error-pages) section.                                                                                                                                          |
 | `<prefix>.frontend.errors.<name>.status=RANGE`              | See [custom error pages](/configuration/commons/#custom-error-pages) section.                                                                                                                                          |
@@ -120,7 +120,7 @@ Additional settings can be defined using Consul Catalog tags.
 | `<prefix>.frontend.rateLimit.rateSet.<name>.period=6`       | See [rate limiting](/configuration/commons/#rate-limiting) section.                                                                                                                                                    |
 | `<prefix>.frontend.rateLimit.rateSet.<name>.average=6`      | See [rate limiting](/configuration/commons/#rate-limiting) section.                                                                                                                                                    |
 | `<prefix>.frontend.rateLimit.rateSet.<name>.burst=6`        | See [rate limiting](/configuration/commons/#rate-limiting) section.                                                                                                                                                    |
-| `<prefix>.frontend.redirect.entryPoint=https`               | Enables Redirect to another entryPoint for that frontend (e.g. HTTPS).                                                                                                                                                 |
+| `<prefix>.frontend.redirect.entrypoint=https`               | Enables Redirect to another entrypoint for that frontend (e.g. HTTPS).                                                                                                                                                 |
 | `<prefix>.frontend.redirect.regex=^http://localhost/(.*)`   | Redirect to another URL for that frontend.<br>Must be set with `traefik.frontend.redirect.replacement`.                                                                                                                |
 | `<prefix>.frontend.redirect.replacement=http://mydomain/$1` | Redirect to another URL for that frontend.<br>Must be set with `traefik.frontend.redirect.regex`.                                                                                                                      |
 | `<prefix>.frontend.redirect.permanent=true`                 | Return 301 instead of 302.                                                                                                                                                                                             |

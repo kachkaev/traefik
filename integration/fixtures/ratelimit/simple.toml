@@ -1,9 +1,9 @@
-defaultEntryPoints = ["http"]
+defaultEntrypoints = ["http"]
 
 logLevel = "DEBUG"
 
-[entryPoints]
-  [entryPoints.http]
+[entrypoints]
+  [entrypoints.http]
   address = ":80"
 
 [file]
