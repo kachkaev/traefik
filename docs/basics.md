@@ -675,9 +675,9 @@ Once a day (the first call begins 10 minutes after the start of Træfik), we col
   swarmMode = true
 
   [Docker.TLS]
-    CA = "xxxx"
-    Cert = "xxxx"
-    Key = "xxxx"
+    ca = "xxxx"
+    cert = "xxxx"
+    key = "xxxx"
     insecureSkipVerify = false
 
 [ECS]
