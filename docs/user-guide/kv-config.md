@@ -67,30 +67,30 @@ Here is the toml configuration we would like to store in the Key-value Store  :
 ```toml
 logLevel = "DEBUG"
 
-defaultEntrypoints = ["http", "https"]
+defaultEntryPoints = ["http", "https"]
 
-[entrypoints]
-  [entrypoints.api]
-  address = ":8081"
-  [entrypoints.http]
+[entryPoints]
+  [entryPoints.api]
+    address = ":8081"
+  [entryPoints.http]
   address = ":80"
-  [entrypoints.https]
+  [entryPoints.https]
   address = ":443"
   
-    [entrypoints.https.tls]
-      [[entrypoints.https.tls.certificates]]
+    [entryPoints.https.tls]
+      [[entryPoints.https.tls.certificates]]
       certFile = "integration/fixtures/https/snitest.com.cert"
       keyFile = "integration/fixtures/https/snitest.com.key"
-      [[entrypoints.https.tls.certificates]]
+      [[entryPoints.https.tls.certificates]]
       certFile = """-----BEGIN CERTIFICATE-----
                       <cert file content>
                       -----END CERTIFICATE-----"""
       keyFile = """-----BEGIN CERTIFICATE-----
                       <key file content>
                       -----END CERTIFICATE-----"""
-    [entrypoints.other-https]
+    [entryPoints.other-https]
     address = ":4443"
-      [entrypoints.other-https.tls]
+      [entryPoints.other-https.tls]
 
 [consul]
   endpoint = "127.0.0.1:8500"
@@ -266,11 +266,11 @@ Here is the toml configuration we would like to store in the store :
   backend = "backend1"
   passHostHeader = true
   priority = 10
-  entrypoints = ["https"] # overrides defaultEntrypoints
+  entrypoints = ["https"] # overrides defaultEntryPoints
     [frontends.frontend2.routes.test_1]
     rule = "Host:{subdomain:[a-z]+}.localhost"
   [frontends.frontend3]
-  entrypoints = ["http", "https"] # overrides defaultEntrypoints
+  entrypoints = ["http", "https"] # overrides defaultEntryPoints
   backend = "backend2"
   rule = "Path:/test"
 
@@ -280,7 +280,7 @@ Here is the toml configuration we would like to store in the store :
     keyFile = "path/to/your.key"
 
 [[tls]]
-  entrypoints = ["https","other-https"]
+  entryPoints = ["https","other-https"]
   [tls.certificate]
     certFile = """-----BEGIN CERTIFICATE-----
                       <cert file content>
@@ -341,7 +341,7 @@ And there, the same dynamic configuration in a KV Store (using `prefix = "traefi
 | `/traefik/tls/1/certificate/keyfile`  | `path/to/your.key` |
 
 !!! note
-    As `/traefik/tls/1/entrypoints` is not defined, the certificate will be attached to all `defaulEntrypoints` with a TLS configuration (in the example, the entrypoint `https`)
+    As `/traefik/tls/1/entrypoints` is not defined, the certificate will be attached to all `defaulEntryPoints` with a TLS configuration (in the example, the entryPoint `https`)
 
 - certificate 2
 

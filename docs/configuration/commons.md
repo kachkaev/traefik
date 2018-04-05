@@ -68,7 +68,7 @@
 # Optional
 # Default: ["http"]
 #
-# defaultEntrypoints = ["http", "https"]
+# defaultEntryPoints = ["http", "https"]
 ```
 
 - `graceTimeOut`: Duration to give active requests a chance to finish before Traefik stops.  
@@ -91,7 +91,7 @@ If you encounter 'too many open files' errors, you can either increase this valu
 - `rootCAs`: Register Certificates in the RootCA. This certificates will be use for backends calls.  
 **Note** You can use file path or cert content directly
 
-- `defaultEntrypoints`: Entrypoints to be used by frontends that do not specify any entrypoint.  
+- `defaultEntryPoints`: Entrypoints to be used by frontends that do not specify any entrypoint.  
 Each frontend can specify its own entrypoints.
 
 

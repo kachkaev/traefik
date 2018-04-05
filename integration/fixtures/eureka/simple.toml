@@ -1,9 +1,9 @@
-defaultEntrypoints = ["http"]
+defaultEntryPoints = ["http"]
 
 logLevel = "DEBUG"
 
-[entrypoints]
-  [entrypoints.http]
+[entryPoints]
+  [entryPoints.http]
   address = ":8000"
 
 

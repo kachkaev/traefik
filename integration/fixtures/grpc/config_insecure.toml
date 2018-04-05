@@ -1,12 +1,12 @@
-defaultEntrypoints = ["https"]
+defaultEntryPoints = ["https"]
 
 insecureSkipVerify = true
 
-[entrypoints]
-  [entrypoints.https]
+[entryPoints]
+  [entryPoints.https]
   address = ":4443"
-    [entrypoints.https.tls]
-     [[entrypoints.https.tls.certificates]]
+    [entryPoints.https.tls]
+     [[entryPoints.https.tls.certificates]]
      certFile = """{{ .CertContent }}"""
      keyFile  = """{{ .KeyContent }}"""
 

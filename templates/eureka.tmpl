@@ -16,7 +16,7 @@
 
   [frontends."frontend-{{ $app.Name }}"]
     backend = "backend-{{ $app.Name }}"
-    entrypoints = ["http"]
+    entryPoints = ["http"]
 
     [frontends."frontend-{{ $app.Name }}".routes."route-host{{ $app.Name }}"]
       rule = "Host:{{ $app.Name | tolower }}"

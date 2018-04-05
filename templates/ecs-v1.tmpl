@@ -30,7 +30,7 @@
     passHostHeader = {{ getPassHostHeader . }}
     priority = {{ getPriority . }}
 
-    entrypoints = [{{range  getEntrypoints . }}
+    entryPoints = [{{range  getEntryPoints . }}
       "{{.}}",
       {{end}}]
 

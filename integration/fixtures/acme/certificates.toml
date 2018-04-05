@@ -10,7 +10,7 @@
     rule = "Host:traefik.acme.wtf"
 
 [[tls]]
-entrypoints = ["https"]
+entryPoints = ["https"]
   [tls.certificate]
   certFile = "fixtures/acme/ssl/wildcard.crt"
   keyFile = "fixtures/acme/ssl/wildcard.key"

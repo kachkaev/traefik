@@ -22,7 +22,7 @@
 # Optional
 # Default: ["http"]
 #
-# defaultEntrypoints = ["http", "https"]
+# defaultEntryPoints = ["http", "https"]
 
 ################################################################
 # Entrypoints configuration
@@ -32,8 +32,8 @@
 #
 # Optional
 # Default:
-[entrypoints]
-    [entrypoints.http]
+[entryPoints]
+    [entryPoints.http]
     address = ":80"
 
 ################################################################
@@ -96,12 +96,12 @@
 # Enable API and dashboard
 [api]
 
-  # Name of the related entrypoint
+  # Name of the related entry point
   #
   # Optional
   # Default: "traefik"
   #
-  # entrypoint = "traefik"
+  # entryPoint = "traefik"
 
   # Enabled Dashboard
   #
@@ -117,12 +117,12 @@
 # Enable ping
 [ping]
 
-  # Name of the related entrypoint
+  # Name of the related entry point
   #
   # Optional
   # Default: "traefik"
   #
-  # entrypoint = "traefik"
+  # entryPoint = "traefik"
 
 ################################################################
 # Docker configuration backend

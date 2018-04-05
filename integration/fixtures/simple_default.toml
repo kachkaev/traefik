@@ -1,5 +1,5 @@
-defaultEntrypoints = ["http"]
+defaultEntryPoints = ["http"]
 
-[entrypoints]
-  [entrypoints.http]
+[entryPoints]
+  [entryPoints.http]
   address = ":8000"

@@ -6,12 +6,12 @@ See also [Let's Encrypt examples](/user-guide/examples/#lets-encrypt-support) an
 
 ```toml
 # Sample entrypoint configuration when using ACME.
-[entrypoints]
-  [entrypoints.http]
+[entryPoints]
+  [entryPoints.http]
   address = ":80"
-  [entrypoints.https]
+  [entryPoints.https]
   address = ":443"
-    [entrypoints.https.tls]
+    [entryPoints.https.tls]
 ```
 
 ```toml
@@ -41,7 +41,7 @@ storage = "acme.json"
 #
 # Required
 #
-entrypoint = "https"
+entryPoint = "https"
 
 # Deprecated, replaced by [acme.dnsChallenge].
 #
@@ -106,11 +106,11 @@ entrypoint = "https"
 #
 [acme.httpChallenge]
 
-  # Entrypoint to use for the HTTP-01 challenges.
+  # EntryPoint to use for the HTTP-01 challenges.
   #
   # Required
   #
-  entrypoint = "http"
+  entryPoint = "http"
 
 # Use a DNS-01/DNS-02 acme challenge rather than HTTP-01 challenge.
 # Note : Mandatory for wildcard certificates generation.
@@ -136,7 +136,7 @@ entrypoint = "https"
 ```
 
 !!! note
-    If `HTTP-01` challenge is used, `acme.httpChallenge.entrypoint` has to be defined and reachable by Let's Encrypt through the port 80.
+    If `HTTP-01` challenge is used, `acme.httpChallenge.entryPoint` has to be defined and reachable by Let's Encrypt through the port 80.
     These are Let's Encrypt limitations as described on the [community forum](https://community.letsencrypt.org/t/support-for-ports-other-than-80-and-443/3419/72).
 
 !!! note
@@ -231,35 +231,35 @@ You can use redirection with HTTP-01 challenge without problem.
 ```toml
 [acme]
 # ...
-entrypoint = "https"
+entryPoint = "https"
 [acme.httpChallenge]
-  entrypoint = "http"
+  entryPoint = "http"
 ```
 
-#### `entrypoint`
+#### `entryPoint`
 
-Specify the entrypoint to use during the challenges.
+Specify the entryPoint to use during the challenges.
 
 ```toml
-defaultEntrypoints = ["http", "https"]
+defaultEntryPoints = ["http", "https"]
 
-[entrypoints]
-  [entrypoints.http]
+[entryPoints]
+  [entryPoints.http]
   address = ":80"
-  [entrypoints.https]
+  [entryPoints.https]
   address = ":443"
-    [entrypoints.https.tls]
+    [entryPoints.https.tls]
 # ...
 
 [acme]
   # ...
-  entrypoint = "https"
+  entryPoint = "https"
   [acme.httpChallenge]
-    entrypoint = "http"
+    entryPoint = "http"
 ```
 
 !!! note
-    `acme.httpChallenge.entrypoint` has to be reachable by Let's Encrypt through the port 80.
+    `acme.httpChallenge.entryPoint` has to be reachable by Let's Encrypt through the port 80.
     It's a Let's Encrypt limitation as described on the [community forum](https://community.letsencrypt.org/t/support-for-ports-other-than-80-and-443/3419/72).
 
 ### `dnsChallenge`
@@ -351,7 +351,7 @@ onHostRule = true
 # ...
 ```
 
-Enable certificate generation on frontends `Host` rules (for frontends wired on the `acme.entrypoint`).
+Enable certificate generation on frontends `Host` rules (for frontends wired on the `acme.entryPoint`).
 
 This will request a certificate from Let's Encrypt for each frontend with a Host rule.
 

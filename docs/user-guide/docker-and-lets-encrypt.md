@@ -80,16 +80,16 @@ Let's take a look at a simple `traefik.toml` configuration as well before we'll 
 debug = false
 
 logLevel = "ERROR"
-defaultEntrypoints = ["https","http"]
+defaultEntryPoints = ["https","http"]
 
-[entrypoints]
-  [entrypoints.http]
+[entryPoints]
+  [entryPoints.http]
   address = ":80"
-    [entrypoints.http.redirect]
-    entrypoint = "https"
-  [entrypoints.https]
+    [entryPoints.http.redirect]
+    entryPoint = "https"
+  [entryPoints.https]
   address = ":443"
-  [entrypoints.https.tls]
+  [entryPoints.https.tls]
 
 [retry]
 
@@ -102,17 +102,17 @@ exposedByDefault = false
 [acme]
 email = "your-email-here@my-awesome-app.org"
 storage = "acme.json"
-entrypoint = "https"
+entryPoint = "https"
 OnHostRule = true
 [acme.httpChallenge]
-entrypoint = "http"
+entryPoint = "http"
 ```
 
 This is the minimum configuration required to do the following:
 
 - Log `ERROR`-level messages (or more severe) to the console, but silence `DEBUG`-level messages
 - Check for new versions of Træfik periodically
-- Create two entrypoints, namely an `HTTP` endpoint on port `80`, and an `HTTPS` endpoint on port `443` where all incoming traffic on port `80` will immediately get redirected to `HTTPS`.
+- Create two entry points, namely an `HTTP` endpoint on port `80`, and an `HTTPS` endpoint on port `443` where all incoming traffic on port `80` will immediately get redirected to `HTTPS`.
 - Enable the Docker configuration backend and listen for container events on the Docker unix socket we've mounted earlier. However, **new containers will not be exposed by Træfik by default, we'll get into this in a bit!**
 - Enable automatic request and configuration of SSL certificates using Let's Encrypt.
     These certificates will be stored in the `acme.json` file, which you can back-up yourself and store off-premises.

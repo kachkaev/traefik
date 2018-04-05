@@ -1,11 +1,11 @@
-defaultEntrypoints = ["http"]
+defaultEntryPoints = ["http"]
 
 logLevel = "DEBUG"
 
-[entrypoints]
-  [entrypoints.http]
+[entryPoints]
+  [entryPoints.http]
   address = ":8000"
-  [entrypoints.api]
+  [entryPoints.api]
   address = ":8081"
 
 
@@ -15,4 +15,4 @@ logLevel = "DEBUG"
   prefix = "traefik"
 
 [api]
-  entrypoint = "api"
+  entryPoint = "api"

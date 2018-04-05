@@ -1,5 +1,5 @@
 logLevel = "ERROR"
-defaultEntrypoints = ["http"]
+defaultEntryPoints = ["http"]
 checkNewVersion = false
 
 [traefikLog]
@@ -8,29 +8,29 @@ checkNewVersion = false
 [accessLog]
   filePath = "access.log"
 
-[entrypoints]
-  [entrypoints.http]
+[entryPoints]
+  [entryPoints.http]
     address = ":8000"
-  [entrypoints.httpRedirect]
+  [entryPoints.httpRedirect]
     address = ":8001"
-    [entrypoints.httpRedirect.redirect]
-      entrypoint = "http"
-  [entrypoints.httpWhitelistReject]
+    [entryPoints.httpRedirect.redirect]
+      entryPoint = "http"
+  [entryPoints.httpWhitelistReject]
     address = ":8002"
     whiteListSourceRange = ["8.8.8.8/32"]
-  [entrypoints.httpAuth]
+  [entryPoints.httpAuth]
     address = ":8004"
-    [entrypoints.httpAuth.auth.basic]
+    [entryPoints.httpAuth.auth.basic]
         users = ["test:$apr1$H6uskkkW$IgXLP6ewTrSuBkTrqE8wj/", "test2:$apr1$d9hr9HBB$4HxwgUir3HP4EsggP/QNo0"]
-  [entrypoints.frontendRedirect]
+  [entryPoints.frontendRedirect]
     address = ":8005"
-  [entrypoints.httpFrontendAuth]
+  [entryPoints.httpFrontendAuth]
     address = ":8006"
-  [entrypoints.httpRateLimit]
+  [entryPoints.httpRateLimit]
     address = ":8007"
-  [entrypoints.digestAuth]
+  [entryPoints.digestAuth]
     address = ":8008"
-    [entrypoints.digestAuth.auth.digest]
+    [entryPoints.digestAuth.auth.digest]
       users = ["test:traefik:a2688e031edb4be6a3797f3882655c05", "test2:traefik:518845800f9e2bfb1f1f740ec24f074e"]
 
 [api]

@@ -1,12 +1,12 @@
-defaultEntrypoints = ["http"]
+defaultEntryPoints = ["http"]
 
 logLevel = "DEBUG"
 debug = true
 
 [api]
 
-[entrypoints]
-    [entrypoints.http]
+[entryPoints]
+    [entryPoints.http]
     address = ":8000"
 
 [tracing]

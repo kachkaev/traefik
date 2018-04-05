@@ -1,15 +1,15 @@
-defaultEntrypoints = ["http"]
+defaultEntryPoints = ["http"]
 
 logLevel = "DEBUG"
 
-[entrypoints]
-  [entrypoints.http]
+[entryPoints]
+  [entryPoints.http]
   address = ":8000"
-  [entrypoints.api]
+[entryPoints.api]
   address = ":9090"
 
 [api]
-  entrypoint = "api"
+  entryPoint = "api"
 
 [marathon]
   endpoint = "{{.MarathonURL}}"

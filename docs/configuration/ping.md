@@ -5,12 +5,12 @@
 ```toml
 # Ping definition
 [ping]
-  # Name of the related entrypoint
+  # Name of the related entry point
   #
   # Optional
   # Default: "traefik"
   #
-  entrypoint = "traefik"
+  entryPoint = "traefik"
 ```
 
 | Path    | Method        | Description                                                                                        |
@@ -19,7 +19,7 @@
 
 
 !!! warning
-    Even if you have authentication configured on entrypoint, the `/ping` path of the api is excluded from authentication.
+    Even if you have authentication configured on entry point, the `/ping` path of the api is excluded from authentication.
 
 ## Examples
 
@@ -35,46 +35,46 @@ In many environments, the security staff may not _allow_ you to expose it.
 
 You have two options:
 
-* Enable `/ping` on a regular entrypoint
+* Enable `/ping` on a regular entry point
 * Enable `/ping` on a dedicated port
 
-### Ping health check on a regular entrypoint
+### Ping health check on a regular entry point
 
-To proxy `/ping` from a regular entrypoint to the administration one without exposing the panel, do the following:
+To proxy `/ping` from a regular entry point to the administration one without exposing the panel, do the following:
 
 ```toml
-defaultEntrypoints = ["http"]
+defaultEntryPoints = ["http"]
 
-[entrypoints]
-  [entrypoints.http]
+[entryPoints]
+  [entryPoints.http]
   address = ":80"
 
 [ping]
-entrypoint = "http"
+entryPoint = "http"
 
 ```
 
-The above link `ping` on the `http` entrypoint and then expose it on port `80`
+The above link `ping` on the `http` entry point and then expose it on port `80`
 
 ### Enable ping health check on dedicated port
 
-If you do not want to or cannot expose the health-check on a regular entrypoint - e.g. your security rules do not allow it, or you have a conflicting path - then you can enable health-check on its own entrypoint.
+If you do not want to or cannot expose the health-check on a regular entry point - e.g. your security rules do not allow it, or you have a conflicting path - then you can enable health-check on its own entry point.
 Use the following configuration:
 
 ```toml
-defaultEntrypoints = ["http"]
+defaultEntryPoints = ["http"]
 
-[entrypoints]
-  [entrypoints.http]
+[entryPoints]
+  [entryPoints.http]
   address = ":80"
-  [entrypoints.ping]
+  [entryPoints.ping]
   address = ":8082"
 
 [ping]
-entrypoint = "ping"
+entryPoint = "ping"
 ```
 
-The above is similar to the previous example, but instead of enabling `/ping` on the _default_ entrypoint, we enable it on a _dedicated_ entrypoint.
+The above is similar to the previous example, but instead of enabling `/ping` on the _default_ entry point, we enable it on a _dedicated_ entry point.
 
 In the above example, you would access a regular path and health-check as follows:
 
@@ -83,8 +83,8 @@ In the above example, you would access a regular path and health-check as follow
 
 Note the dedicated port `:8082` for `/ping`.
 
-In the above example, it is _very_ important to create a named dedicated entrypoint, and do **not** include it in `defaultEntrypoints`.
-Otherwise, you are likely to expose _all_ services via this entrypoint.
+In the above example, it is _very_ important to create a named dedicated entry point, and do **not** include it in `defaultEntryPoints`.
+Otherwise, you are likely to expose _all_ services via this entry point.
 
 ### Using ping for external Load-balancer rotation health check
 

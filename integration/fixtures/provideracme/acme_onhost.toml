@@ -1,24 +1,24 @@
 logLevel = "DEBUG"
 
-defaultEntrypoints = ["http", "https"]
+defaultEntryPoints = ["http", "https"]
 
-[entrypoints]
-  [entrypoints.http]
+[entryPoints]
+  [entryPoints.http]
   address = ":5002"
-  [entrypoints.https]
+  [entryPoints.https]
   address = ":5001"
-    [entrypoints.https.tls]
+    [entryPoints.https.tls]
 
 
 [acme]
 email = "test@traefik.io"
 storage = "/dev/null"
-entrypoint = "https"
+entryPoint = "https"
 onDemand = {{.OnDemand}}
 OnHostRule = {{.OnHostRule}}
 caServer = "http://{{.BoulderHost}}:4001/directory"
 [acme.httpChallenge]
-entrypoint="http"
+entryPoint="http"
 
 [api]
 

@@ -37,15 +37,15 @@ They can be defined using:
 Here is an example of entrypoints definition:
 
 ```toml
-[entrypoints]
-  [entrypoints.http]
+[entryPoints]
+  [entryPoints.http]
   address = ":80"
-    [entrypoints.http.redirect]
-    entrypoint = "https"
-  [entrypoints.https]
+    [entryPoints.http.redirect]
+    entryPoint = "https"
+  [entryPoints.https]
   address = ":443"
-    [entrypoints.https.tls]
-      [[entrypoints.https.tls.certificates]]
+    [entryPoints.https.tls]
+      [[entryPoints.https.tls.certificates]]
       certFile = "tests/traefik.crt"
       keyFile = "tests/traefik.key"
 ```
@@ -58,14 +58,14 @@ Here is an example of entrypoints definition:
 And here is another example with client certificate authentication:
 
 ```toml
-[entrypoints]
-  [entrypoints.https]
+[entryPoints]
+  [entryPoints.https]
   address = ":443"
-  [entrypoints.https.tls]
-    [entrypoints.https.tls.ClientCA]
+  [entryPoints.https.tls]
+    [entryPoints.https.tls.ClientCA]
     files = ["tests/clientca1.crt", "tests/clientca2.crt"]
     optional = false
-    [[entrypoints.https.tls.certificates]]
+    [[entryPoints.https.tls.certificates]]
     certFile = "tests/traefik.crt"
     keyFile = "tests/traefik.key"
 ```
@@ -159,7 +159,7 @@ Here is an example of frontends definition:
   passHostHeader = true
   passTLSCert = true
   priority = 10
-  entrypoints = ["https"] # overrides defaultEntrypoints
+  entrypoints = ["https"] # overrides defaultEntryPoints
     [frontends.frontend2.routes.test_1]
     rule = "HostRegexp:localhost,{subdomain:[a-z]+}.localhost"
   [frontends.frontend3]
@@ -632,61 +632,61 @@ Once a day (the first call begins 10 minutes after the start of Træfik), we col
 - Source configuration:
 
 ```toml
-[entrypoints]
-  [entrypoints.http]
-  address = ":80"
+[entryPoints]
+    [entryPoints.http]
+       address = ":80"
 
 [api]
 
 [Docker]
-endpoint = "tcp://10.10.10.10:2375"
-domain = "foo.bir"
-exposedByDefault = true
-swarmMode = true
+  endpoint = "tcp://10.10.10.10:2375"
+  domain = "foo.bir"
+  exposedByDefault = true
+  swarmMode = true
 
-[Docker.TLS]
-ca = "dockerCA"
-cert = "dockerCert"
-key = "dockerKey"
-insecureSkipVerify = true
+  [Docker.TLS]
+    CA = "dockerCA"
+    Cert = "dockerCert"
+    Key = "dockerKey"
+    insecureSkipVerify = true
 
 [ECS]
-domain = "foo.bar"
-exposedByDefault = true
-clusters = ["foo-bar"]
-region = "us-west-2"
-accessKeyID = "AccessKeyID"
-secretAccessKey = "SecretAccessKey"
+  Domain = "foo.bar"
+  ExposedByDefault = true
+  Clusters = ["foo-bar"]
+  Region = "us-west-2"
+  AccessKeyID = "AccessKeyID"
+  SecretAccessKey = "SecretAccessKey"
 ```
 
 - Obfuscated and anonymous configuration:
 
 ```toml
-[entrypoints]
-  [entrypoints.http]
-  address = ":80"
+[entryPoints]
+    [entryPoints.http]
+       address = ":80"
 
 [api]
 
 [Docker]
-endpoint = "xxxx"
-domain = "xxxx"
-exposedByDefault = true
-swarmMode = true
+  Endpoint = "xxxx"
+  Domain = "xxxx"
+  ExposedByDefault = true
+  SwarmMode = true
 
-[Docker.TLS]
-ca = "xxxx"
-cert = "xxxx"
-key = "xxxx"
-insecureSkipVerify = false
+  [Docker.TLS]
+    CA = "xxxx"
+    Cert = "xxxx"
+    Key = "xxxx"
+    insecureSkipVerify = false
 
 [ECS]
-domain = "xxxx"
-exposedByDefault = true
-clusters = []
-region = "us-west-2"
-accessKeyID = "xxxx"
-secretAccessKey = "xxxx"
+  Domain = "xxxx"
+  ExposedByDefault = true
+  Clusters = []
+  Region = "us-west-2"
+  AccessKeyID = "xxxx"
+  SecretAccessKey = "xxxx"
 ```
 
 ### Show me the code !

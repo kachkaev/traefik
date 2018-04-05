@@ -391,23 +391,23 @@ curl -s "http://localhost:8080/api" | jq .
 As the web provider is deprecated, you can handle the `Address` option like this:
 
 ```toml
-defaultEntrypoints = ["http"]
+defaultEntryPoints = ["http"]
 
-[entrypoints]
-  [entrypoints.http]
+[entryPoints]
+  [entryPoints.http]
   address = ":80"
 
-  [entrypoints.foo]
+  [entryPoints.foo]
   address = ":8082"
 
-  [entrypoints.bar]
+  [entryPoints.bar]
   address = ":8083"
 
 [ping]
-entrypoint = "foo"
+entryPoint = "foo"
 
 [api]
-entrypoint = "bar"
+entryPoint = "bar"
 ```
 
 In the above example, you would access a regular path, administration panel, and health-check as follows:
@@ -416,29 +416,29 @@ In the above example, you would access a regular path, administration panel, and
 * Admin Panel: `http://hostname:8083/`
 * Ping URL: `http://hostname:8082/ping`
 
-In the above example, it is _very_ important to create a named dedicated entrypoint, and do **not** include it in `defaultEntrypoints`.
-Otherwise, you are likely to expose _all_ services via that entrypoint.
+In the above example, it is _very_ important to create a named dedicated entry point, and do **not** include it in `defaultEntryPoints`.
+Otherwise, you are likely to expose _all_ services via that entry point.
 
 #### Path
 
 As the web provider is deprecated, you can handle the `Path` option like this:
 
 ```toml
-defaultEntrypoints = ["http"]
+defaultEntryPoints = ["http"]
 
-[entrypoints]
-  [entrypoints.http]
+[entryPoints]
+  [entryPoints.http]
   address = ":80"
 
-  [entrypoints.foo]
+  [entryPoints.foo]
   address = ":8080"
 
-  [entrypoints.bar]
+  [entryPoints.bar]
   address = ":8081"
 
 # Activate API and Dashboard
 [api]
-entrypoint = "bar"
+entryPoint = "bar"
 dashboard = true
 
 [file]
@@ -449,7 +449,7 @@ dashboard = true
 
   [frontends]
     [frontends.frontend1]
-    entrypoints = ["foo"]
+    entryPoints = ["foo"]
     backend = "backend1"
       [frontends.frontend1.routes.test_1]
       rule = "PathPrefixStrip:/yourprefix;PathPrefix:/yourprefix"
@@ -460,16 +460,16 @@ dashboard = true
 As the web provider is deprecated, you can handle the `auth` option like this:
 
 ```toml
-defaultEntrypoints = ["http"]
+defaultEntryPoints = ["http"]
 
-[entrypoints]
-  [entrypoints.http]
+[entryPoints]
+  [entryPoints.http]
   address = ":80"
 
- [entrypoints.foo]
+ [entryPoints.foo]
    address=":8080"
-   [entrypoints.foo.auth]
-     [entrypoints.foo.auth.basic]
+   [entryPoints.foo.auth]
+     [entryPoints.foo.auth.basic]
        users = [
          "test:$apr1$H6uskkkW$IgXLP6ewTrSuBkTrqE8wj/",
          "test2:$apr1$d9hr9HBB$4HxwgUir3HP4EsggP/QNo0",
@@ -479,4 +479,4 @@ defaultEntrypoints = ["http"]
 entrypoint="foo"
 ```
 
-For more information, see [entrypoints](/configuration/entrypoints/) .
+For more information, see [entry points](/configuration/entrypoints/) .

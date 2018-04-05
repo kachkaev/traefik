@@ -10,12 +10,12 @@
   # To enable Traefik to export internal metrics to Prometheus
   [metrics.prometheus]
 
-    # Name of the related entrypoint
+    # Name of the related entry point
     #
     # Optional
     # Default: "traefik"
     #
-    entrypoint = "traefik"
+    entryPoint = "traefik"
 
     # Buckets for latency metrics
     #

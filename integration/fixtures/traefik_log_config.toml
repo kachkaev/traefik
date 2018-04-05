@@ -8,12 +8,12 @@
   filePath = "access.log"
 
 logLevel = "DEBUG"
-defaultEntrypoints = ["http"]
+defaultEntryPoints = ["http"]
 
 checkNewVersion = false
 
-[entrypoints]
-  [entrypoints.http]
+[entryPoints]
+  [entryPoints.http]
   address = ":8000"
 
 [api]

@@ -1,6 +1,6 @@
 logLevel = "DEBUG"
 
-defaultEntrypoints = ["http"]
+defaultEntryPoints = ["http"]
 
 # Use certificate in net/internal/testcert.go
 rootCAs =  [ """
@@ -20,8 +20,8 @@ fblo6RBxUQ==
 -----END CERTIFICATE-----
 """]
 
-[entrypoints]
-  [entrypoints.http]
+[entryPoints]
+  [entryPoints.http]
   address = ":8081"
 
 [api]

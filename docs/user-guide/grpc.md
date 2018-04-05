@@ -42,17 +42,17 @@ Common Name (e.g. server FQDN or YOUR name) []: frontend.local
 At last, we configure our Træfik instance to use both self-signed certificates.
 
 ```toml
-defaultEntrypoints = ["https"]
+defaultEntryPoints = ["https"]
 
 # For secure connection on backend.local
 rootCAs = [ "./backend.cert" ]
 
-[entrypoints]
-  [entrypoints.https]
+[entryPoints]
+  [entryPoints.https]
   address = ":4443"
-    [entrypoints.https.tls]
+    [entryPoints.https.tls]
      # For secure connection on frontend.local
-     [[entrypoints.https.tls.certificates]]
+     [[entryPoints.https.tls.certificates]]
      certFile = "./frontend.cert"
      keyFile  = "./frontend.key"
 

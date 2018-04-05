@@ -53,7 +53,7 @@
     passHostHeader = {{ getPassHostHeader $app $serviceName }}
     priority = {{ getPriority $app $serviceName }}
 
-    entrypoints = [{{range getEntrypoints $app $serviceName }}
+    entryPoints = [{{range getEntryPoints $app $serviceName }}
       "{{.}}",
       {{end}}]
 

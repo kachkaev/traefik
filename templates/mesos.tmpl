@@ -65,7 +65,7 @@
     passHostHeader = {{ getPassHostHeader $app.TraefikLabels }}
     passTLSCert = {{ getPassTLSCert $app.TraefikLabels }}
 
-    entrypoints = [{{range getEntrypoints $app.TraefikLabels }}
+    entryPoints = [{{range getEntryPoints $app.TraefikLabels }}
       "{{.}}",
       {{end}}]
 
@@ -85,7 +85,7 @@
     {{ $redirect := getRedirect $app.TraefikLabels }}
     {{if $redirect }}
     [frontends."frontend-{{ $frontendName }}".redirect]
-      entrypoint = "{{ $redirect.Entrypoint }}"
+      entryPoint = "{{ $redirect.EntryPoint }}"
       regex = "{{ $redirect.Regex }}"
       replacement = "{{ $redirect.Replacement }}"
       permanent = {{ $redirect.Permanent }}
