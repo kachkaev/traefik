@@ -392,7 +392,7 @@ The deprecated way:
 [backends]
   [backends.backend1]
     [backends.backend1.loadbalancer]
-    sticky = true
+      sticky = true
 ```
 
 ### Health Check

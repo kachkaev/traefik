@@ -47,7 +47,7 @@ prefix = "traefik"
 # Optional
 # Default: "Host:{{.ServiceName}}.{{.Domain}}"
 #
-# frontEndRule = "Host:{{.ServiceName}}.{{.Domain}}"
+#frontEndRule = "Host:{{.ServiceName}}.{{.Domain}}"
 
 # Enable Consul catalog TLS connection.
 #

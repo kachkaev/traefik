@@ -28,7 +28,7 @@ email = "test@traefik.io"
 #
 # Optional (Deprecated)
 #
-# storageFile = "acme.json"
+#storageFile = "acme.json"
 
 # File or key used for certificates storage.
 #
