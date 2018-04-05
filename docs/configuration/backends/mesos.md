@@ -69,7 +69,7 @@ domain = "mesos.localhost"
 # Optional
 # Default: 30
 #
-# ZkDetectionTimeout = 30
+# zkDetectionTimeout = 30
 
 # Polling interval (in seconds).
 #

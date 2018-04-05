@@ -103,7 +103,7 @@ exposedByDefault = false
 email = "your-email-here@my-awesome-app.org"
 storage = "acme.json"
 entryPoint = "https"
-OnHostRule = true
+onHostRule = true
 [acme.httpChallenge]
 entryPoint = "http"
 ```

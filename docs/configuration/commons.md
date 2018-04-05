@@ -55,7 +55,7 @@
 #
 # insecureSkipVerify = true
 
-# Register Certificates in the RootCA.
+# Register Certificates in the rootCA.
 #
 # Optional
 # Default: []
